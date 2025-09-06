@@ -22,8 +22,8 @@ struct ContentView: View {
     /// stream of frames -> VideoFrameView, see distributeVideoFrames
     @State private var framesToDisplay: AsyncStream<CVImageBuffer>?
 
-    @State private var prompt = "Describe the image in English."
-    @State private var promptSuffix = "Output should be brief, about 15 words or less."
+    @State private var prompt = "请用中文描述当前你看到的场景。"
+    @State private var promptSuffix = "输出内容应简明扼要，约15字以内。"
 
     @State private var isShowingInfo: Bool = false
 
