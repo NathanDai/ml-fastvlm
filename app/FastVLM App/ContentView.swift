@@ -60,7 +60,7 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 10.0) {
                         Picker("Camera Type", selection: $selectedCameraType) {
                             ForEach(CameraType.allCases, id: \.self) { cameraType in
-                                Text(cameraType.rawValue.capitalized).tag(cameraType)
+                                Text(cameraType.localizedDisplayName).tag(cameraType)
                             }
                         }
                         // Prevent macOS from adding a text label for the picker
@@ -180,7 +180,7 @@ struct ContentView: View {
                         .frame(minHeight: 50.0, maxHeight: 200.0)
                     }
                 } header: {
-                    Text("Response")
+                    Text("回应")
                         #if os(macOS)
                         .font(.headline)
                         .padding(.bottom, 2.0)
@@ -247,30 +247,30 @@ struct ContentView: View {
                             isEditingPrompt.toggle()
                         }
                         label: {
-                            Text("Done")
+                            Text("完成")
                                 .fontWeight(.bold)
                         }
                     }
                     else {
                         Menu {
                             Button("Describe image") {
-                                prompt = "Describe the image in English."
-                                promptSuffix = "Output should be brief, about 15 words or less."
+                                prompt = "请用中文描述当前你看到的场景。"
+                                promptSuffix = "输出内容应简明扼要，约15字以内。"
                             }
                             Button("Facial expression") {
-                                prompt = "What is this person's facial expression?"
-                                promptSuffix = "Output only one or two words."
+                                prompt = "这个人的面部表情是什么？"
+                                promptSuffix = "只输出一两个词。"
                             }
                             Button("Read text") {
-                                prompt = "What is written in this image?"
-                                promptSuffix = "Output only the text in the image."
+                                prompt = "这张图片上写的是什么？"
+                                promptSuffix = "只输出图片中的文字。"
                             }
                             #if !os(macOS)
                             Button("Customize...") {
                                 isEditingPrompt.toggle()
                             }
                             #endif
-                        } label: { Text("Prompts") }
+                        } label: { Text("提示词") }
                     }
                 }
             }
@@ -315,7 +315,7 @@ struct ContentView: View {
             Section {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
-                        Text("Prompt")
+                        Text("提示词")
                             .font(.headline)
 
                         TextEditor(text: $prompt)
@@ -327,7 +327,7 @@ struct ContentView: View {
                     }
 
                     VStack(alignment: .leading) {
-                        Text("Prompt Suffix")
+                        Text("提示词后缀")
                             .font(.headline)
 
                         TextEditor(text: $promptSuffix)
